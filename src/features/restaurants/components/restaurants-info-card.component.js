@@ -1,6 +1,20 @@
 import React from "react";
 import { StatusBar, StyleSheet, Text, View, SafeAreaView } from "react-native";
-import { Card, Title, Paragraph } from "react-native-paper";
+import { Card, Paragraph } from "react-native-paper";
+import styled from "styled-components/native";
+
+const RestaurantCard = styled(Card)`
+  background-color: white;
+`;
+
+const RestaurantCardCover = styled(Card.Cover)`
+  padding: 20px;
+  background-color: white;
+`;
+
+const Title = styled(Text)`
+  padding: 16px;
+`;
 
 export const RestaurantInfo = ({ restaurant = {} }) => {
   const {
@@ -17,20 +31,10 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
-      <Card elevation={5} style={styles.card}>
-        <Card.Cover
-          key={name}
-          style={styles.cover}
-          source={{ uri: photos[0] }}
-        />
-        <Text style={styles.title}>{name}</Text>
-      </Card>
+      <RestaurantCard elevation={5}>
+        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+        <Title>{name}</Title>
+      </RestaurantCard>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  card: { backgroundColor: "white" },
-  cover: { padding: 20, backgroundColor: "white" },
-  title: { padding: 16 },
-});
