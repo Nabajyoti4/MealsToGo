@@ -8,6 +8,9 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { SafeArea } from "./src/components/utility/space-area.component";
 
+//context
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+
 //navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -57,35 +60,37 @@ export default function App() {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ color, size }) => {
-                let iconName;
+        <RestaurantsContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={({ route }) => ({
+                tabBarIcon: ({ color, size }) => {
+                  let iconName;
 
-                if (route.name === "Restaurants") {
-                  iconName = TABS_ICON.Restaurants;
-                } else if (route.name === "Settings") {
-                  iconName = TABS_ICON.Settings;
-                } else {
-                  iconName = TABS_ICON.Map;
-                }
+                  if (route.name === "Restaurants") {
+                    iconName = TABS_ICON.Restaurants;
+                  } else if (route.name === "Settings") {
+                    iconName = TABS_ICON.Settings;
+                  } else {
+                    iconName = TABS_ICON.Map;
+                  }
 
-                // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-            })}
-          >
-            <Tab.Screen
-              name="Restaurants"
-              component={RestaurantScreen}
-            ></Tab.Screen>
-            <Tab.Screen name="Maps" component={Maps}></Tab.Screen>
-            <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
-          </Tab.Navigator>
-        </NavigationContainer>
+                  // You can return any component that you like here!
+                  return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: "tomato",
+                tabBarInactiveTintColor: "gray",
+              })}
+            >
+              <Tab.Screen
+                name="Restaurants"
+                component={RestaurantScreen}
+              ></Tab.Screen>
+              <Tab.Screen name="Maps" component={Maps}></Tab.Screen>
+              <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantsContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto"></ExpoStatusBar>
     </React.Fragment>
