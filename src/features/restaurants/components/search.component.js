@@ -13,10 +13,6 @@ export const Search = () => {
   const locationContext = useContext(LocationContext);
   const [searchQuery, setSearchQuery] = React.useState(locationContext.keyword);
 
-  useEffect(() => {
-    locationContext.search(searchQuery);
-  }, []);
-  
   return (
     <SearchContainer>
       <Searchbar
