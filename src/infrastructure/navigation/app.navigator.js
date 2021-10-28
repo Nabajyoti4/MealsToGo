@@ -54,6 +54,7 @@ export const AppNavigator = () => {
         })}
       >
         <Tab.Screen
+          options={{ headerShown: false }}
           name="Restaurants"
           component={RestaurantsNavigator}
         ></Tab.Screen>

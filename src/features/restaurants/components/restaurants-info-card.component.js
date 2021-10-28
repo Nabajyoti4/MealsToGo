@@ -31,7 +31,7 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
-    <View style={{ flex: 1, padding: 16 }}>
+
       <RestaurantCard elevation={5}>
         <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
         <Info>
@@ -57,6 +57,5 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
           <Text>{address}</Text>
         </Info>
       </RestaurantCard>
-    </View>
   );
 };
