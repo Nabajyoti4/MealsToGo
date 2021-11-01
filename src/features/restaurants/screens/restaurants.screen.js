@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 
 import { FlatList, View, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
@@ -14,6 +14,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 
 export const RestaurantScreen = ({ navigation }) => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const [isTogggled, setIsToggled] = useState(false);
 
   return (
     <SafeArea>
@@ -27,7 +28,10 @@ export const RestaurantScreen = ({ navigation }) => {
           />
         </View>
       )}
-      <Search></Search>
+      <Search
+        isFavouritesToggled={isTogggled}
+        onFavouritesToggle={() => setIsToggled(!isTogggled)}
+      ></Search>
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {

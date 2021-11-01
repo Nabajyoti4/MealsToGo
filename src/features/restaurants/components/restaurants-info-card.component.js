@@ -6,6 +6,8 @@ import open from "../../../../assets/open";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
 
+import { Favourites } from "../../../components/favourites/favourites.component";
+
 import {
   RestaurantCard,
   RestaurantCardCover,
@@ -31,31 +33,31 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
+    <RestaurantCard elevation={5}>
+      <Favourites restaurant={restaurant}></Favourites>
+      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <Info>
+        <Text variant="label">{name}</Text>
+        <Section>
+          <Rating>
+            {ratingArray.map((_, index) => (
+              <SvgXml key={index} xml={star} width={20} height={20}></SvgXml>
+            ))}
+          </Rating>
+          <SectionEnd>
+            {isClosedTemporarily && (
+              <Text variant="error">CLOSED TEMPORARILY</Text>
+            )}
 
-      <RestaurantCard elevation={5}>
-        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
-        <Info>
-          <Text variant="label">{name}</Text>
-          <Section>
-            <Rating>
-              {ratingArray.map((_, index) => (
-                <SvgXml key={index} xml={star} width={20} height={20}></SvgXml>
-              ))}
-            </Rating>
-            <SectionEnd>
-              {isClosedTemporarily && (
-                <Text variant="error">CLOSED TEMPORARILY</Text>
-              )}
+            <Spacer position="left" size="large"></Spacer>
+            {isOpenNow && <SvgXml xml={open} width={20} height={20}></SvgXml>}
+            <Spacer position="left" size="large"></Spacer>
+            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+          </SectionEnd>
+        </Section>
 
-              <Spacer position="left" size="large"></Spacer>
-              {isOpenNow && <SvgXml xml={open} width={20} height={20}></SvgXml>}
-              <Spacer position="left" size="large"></Spacer>
-              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
-            </SectionEnd>
-          </Section>
-
-          <Text>{address}</Text>
-        </Info>
-      </RestaurantCard>
+        <Text>{address}</Text>
+      </Info>
+    </RestaurantCard>
   );
 };

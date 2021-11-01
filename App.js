@@ -9,6 +9,7 @@ import { Navigation } from "./src/infrastructure/navigation/index";
 //context
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
+import { FavouritesContextProvider } from "./src/services/favourites/favorites.context";
 
 //fonts
 import {
@@ -33,11 +34,13 @@ export default function App() {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation></Navigation>
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation></Navigation>
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto"></ExpoStatusBar>
     </React.Fragment>
