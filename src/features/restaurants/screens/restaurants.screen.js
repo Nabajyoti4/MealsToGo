@@ -9,12 +9,15 @@ import { SafeArea } from "../../../components/utility/space-area.component";
 //component
 import { RestaurantInfo } from "../components/restaurants-info-card.component";
 import { Search } from "../components/search.component";
+import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
 
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { FavouritesContext } from "../../../services/favourites/favorites.context";
 
 export const RestaurantScreen = ({ navigation }) => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   const [isTogggled, setIsToggled] = useState(false);
+  const { favourites } = useContext(FavouritesContext);
 
   return (
     <SafeArea>
@@ -32,6 +35,12 @@ export const RestaurantScreen = ({ navigation }) => {
         isFavouritesToggled={isTogggled}
         onFavouritesToggle={() => setIsToggled(!isTogggled)}
       ></Search>
+      {isTogggled && (
+        <FavouritesBar
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        ></FavouritesBar>
+      )}
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {

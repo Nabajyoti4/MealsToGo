@@ -48,7 +48,6 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
             {isClosedTemporarily && (
               <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
-
             <Spacer position="left" size="large"></Spacer>
             {isOpenNow && <SvgXml xml={open} width={20} height={20}></SvgXml>}
             <Spacer position="left" size="large"></Spacer>
