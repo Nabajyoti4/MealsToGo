@@ -5,7 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { SafeArea } from "../../components/utility/space-area.component";
 
 //navigation
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 //screens
@@ -28,7 +27,6 @@ const Settings = () => (
 
 export const AppNavigator = () => {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, size }) => {
@@ -61,6 +59,5 @@ export const AppNavigator = () => {
         ></Tab.Screen>
         <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
       </Tab.Navigator>
-    </NavigationContainer>
   );
 };
